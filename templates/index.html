@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Resume Analyzer</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .container {
+            background: white;
+            width: 60%;
+            margin: auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+        }
+
+        textarea {
+            width: 90%;
+            height: 180px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .result {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        h1 {
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>AI Resume Analyzer</h1>
+
+    <form method="POST">
+
+        <textarea
+            name="resume"
+            placeholder="Paste your resume text here..."
+        ></textarea>
+
+        <br><br>
+
+        <button type="submit">
+            Analyze Resume
+        </button>
+
+    </form>
+
+    {% if result %}
+
+    <div class="result">
+
+        <h2>Resume Score: {{ result.score }}/100</h2>
+
+        <h3>✅ Skills Found:</h3>
+        <ul>
+            {% for skill in result.found %}
+            <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>❌ Missing Skills:</h3>
+        <ul>
+            {% for skill in result.missing %}
+            <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

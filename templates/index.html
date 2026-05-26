@@ -77,7 +77,13 @@
 
     <div class="result">
 
-        <h2>Resume Score: {{ result.score }}/100</h2>
+        <h2 style="color: {{ result.score_color }};">
+            Resume Score: {{ result.score }}/100
+        </h2>
+
+        <h2>🎯 Suggested Role:
+            {{ result.job_role }}
+        </h2>
 
         <h3>✅ Skills Found:</h3>
         <ul>
@@ -90,6 +96,12 @@
         <ul>
             {% for skill in result.missing %}
             <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+        <h3>📌 Recommendations:</h3>
+        <ul>
+            {% for recommendation in result.recommendations %}
+            <li>{{ recommendation }}</li>
             {% endfor %}
         </ul>
 
